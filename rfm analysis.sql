@@ -21,11 +21,6 @@ select * from `rfm-1111.sales.sales202512`;
 
 
 
-
-
-
-
-
 -- step 2: calculate recency, frequency, monetary(Ranks)
 -- combine with CTEs
 
