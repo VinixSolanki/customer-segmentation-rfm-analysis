@@ -1,106 +1,105 @@
-# 📊 Customer Segmentation using RFM Analysis (BigQuery + Power BI)
+# 🚀 End-to-End Customer Segmentation Data Pipeline (RFM Analysis)
 
-## 📌 Project Overview  
-This project analyzes customer purchase behavior using **RFM (Recency, Frequency, Monetary) analysis** to segment customers and support business decision-making.
+## 📌 Overview
 
----
-
-## 🎯 Objective  
-- Identify high-value customers (Champions & Loyal Customers)  
-- Detect at-risk and inactive customers  
-- Enable targeted marketing and retention strategies  
+This project demonstrates an end-to-end data pipeline for customer segmentation using RFM (Recency, Frequency, Monetary) analysis. The pipeline processes raw transactional data, transforms it using SQL in Google BigQuery, and delivers business insights through an interactive Power BI dashboard.
 
 ---
 
-## 🛠️ Tools & Technologies  
-- Google BigQuery (SQL)  
-- Power BI  
-- SQL (CTEs, Window Functions, NTILE)  
+## 🧱 Architecture
+
+```
+Raw CSV Data 
+→ Google BigQuery (Data Warehouse) 
+→ SQL Transformations (ETL + RFM Logic) 
+→ Power BI Dashboard
+```
 
 ---
 
-## 📂 Dataset  
-- Monthly sales data (Jan–Dec 2025)  
-- Key fields:
-  - CustomerID  
-  - OrderDate  
-  - OrderValue  
-  - ProductType  
+## ⚙️ ETL Process
+
+### 🔹 Extract
+
+* Imported raw transactional CSV data into Google BigQuery
+
+### 🔹 Transform
+
+* Cleaned and validated data (handled nulls, filtered invalid records)
+* Created derived metrics:
+
+  * Recency (days since last purchase)
+  * Frequency (number of transactions)
+  * Monetary (total spend)
+* Applied SQL aggregations, joins, and CTEs to structure data
+
+### 🔹 Load
+
+* Stored transformed data in structured tables for reporting and analysis
+* Connected processed data to Power BI
 
 ---
 
-## 🔄 Project Workflow  
+## 🧠 Data Modeling
 
-### 1. Data Preparation  
-Combined 12 monthly sales tables into a single dataset using UNION ALL.
-
-### 2. RFM Metrics Calculation  
-- Recency → Days since last purchase  
-- Frequency → Number of orders  
-- Monetary → Total customer spending  
-
-### 3. RFM Scoring  
-Used NTILE(10) to assign scores (1–10). Higher score indicates better engagement.
-
-### 4. Total RFM Score  
-rfm_total_score = r_score + f_score + m_score
-
-### 5. Customer Segmentation  
-
-| Score Range | Segment |
-|------------|--------|
-| ≥ 28 | Champions |
-| ≥ 24 | Loyal Customers |
-| ≥ 20 | Potential Loyalists |
-| ≥ 16 | Need Attention |
-| ≥ 12 | Hibernating |
-| ≥ 8  | About to Sleep |
-| ≥ 4  | At Risk |
-| < 4  | Lost |
+* Designed structured datasets to support efficient querying
+* Created customer-level aggregated tables for segmentation
+* Optimized queries for performance using filtering and grouping techniques
 
 ---
 
-## 📊 Dashboard  
-The Power BI dashboard includes:
-- Total customers  
-- Customer segmentation distribution  
-- Detailed RFM metrics  
+## 📊 Dashboard Features (Power BI)
 
-*https://app.powerbi.com/view?r=eyJrIjoiZmYzZTIwYzItZTRkZC00Njg0LTkxYTEtYjEyNjk1YzBiNjBkIiwidCI6Ijk0OTAwMzkzLWI5ZmYtNDIzNS1iMDgzLTcwZmJjZTIzNzdkYSJ9*
+* Customer Segmentation (High / Medium / Low Value)
+* RFM Distribution Analysis
+* Revenue Contribution by Segment
+* Customer Behavior Insights
+* Interactive filters (Date, Segment, Customer)
+* Link: https://app.powerbi.com/view?r=eyJrIjoiZmYzZTIwYzItZTRkZC00Njg0LTkxYTEtYjEyNjk1YzBiNjBkIiwidCI6Ijk0OTAwMzkzLWI5ZmYtNDIzNS1iMDgzLTcwZmJjZTIzNzdkYSJ9
+---
+
+## 💻 Tech Stack
+
+* **Google BigQuery** → Data warehouse
+* **SQL** → Data transformation & analysis (ETL logic)
+* **Power BI** → Data visualization & dashboard
+* **GitHub** → Version control & project documentation
 
 ---
 
-## 🔍 Key Insights  
-- Majority of customers fall into **Hibernating** and **At Risk** segments  
-- **Champions segment is relatively small**, indicating growth opportunity  
-- **About to Sleep customers** show early signs of churn  
+## 🔍 Key Insights
+
+* Identified high-value customers contributing the majority of revenue
+* Detected low-frequency customers with churn risk
+* Enabled targeted marketing strategies based on segmentation
 
 ---
 
-## 💡 Business Recommendations  
-- At Risk → Re-engagement campaigns and discounts  
-- Potential Loyalists → Upselling and personalized offers  
-- Champions → Loyalty programs and retention strategies  
-- Hibernating → Reactivation campaigns  
+## 🎯 Business Impact
+
+* Improved understanding of customer behavior
+* Enabled data-driven decision-making
+* Provided actionable insights for retention and revenue growth
 
 ---
 
-## 🚀 Outcome  
-- Built an end-to-end RFM pipeline using SQL  
-- Created a BI-ready dataset for reporting  
-- Developed a dashboard for business insights  
+## 📂 Project Structure
+
+```
+├── SQL/
+│   ├── etl_rfm.sql
+│   ├── rfm_queries.sql
+│
+├── PowerBI/
+│   ├── dashboard.pbix
+│
+├── README.md
+```
 
 ---
 
-## 📌 Future Improvements  
-- Add Customer Lifetime Value (CLV)  
-- Perform cohort analysis  
-- Automate pipeline with scheduled queries  
+## 💬 Project Summary
+
+Built an end-to-end data pipeline using Google BigQuery where raw data was transformed using SQL into structured RFM metrics. The processed data was then visualized in Power BI to generate actionable business insights on customer segmentation and revenue optimization.
 
 ---
-
-## 👤 Author  
-Vinit Solanki  
-Aspiring Data Analyst  
-
-
